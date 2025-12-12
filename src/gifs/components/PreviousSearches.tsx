@@ -1,12 +1,16 @@
-const PreviousSearches = () => {
+interface PreviousSearchesProps {
+  searches: string[]
+}
+
+const PreviousSearches = ({ searches }: PreviousSearchesProps) => {
   return (
     <div className="previous-searches">
       <h2>Busquedas Previas</h2>
 
       <ul className="previous-searches-list">
-        <li>Goku</li>
-        <li>Saitama</li>
-        <li>Elder Ring</li>
+        {searches.map((term) => (
+          <li key={term}>{term}</li>
+        ))}
       </ul>
     </div>
   )

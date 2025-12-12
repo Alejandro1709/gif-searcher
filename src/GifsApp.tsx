@@ -17,7 +17,7 @@ const GifsApp = () => {
       <SearchBar placeholder="Buscar Gifs" />
 
       {/* Busquedas Previas */}
-      <PreviousSearches />
+      <PreviousSearches searches={['Goku', 'Dragon Ball Z']} />
 
       {/* Gifs */}
       <GifList gifs={mockGifs} />
