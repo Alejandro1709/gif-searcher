@@ -15,7 +15,13 @@ const GifsApp = () => {
   }
 
   const handleSearch = (query: string) => {
-    console.log(query)
+    if (query.length === 0) return
+
+    const sanitized = query.toLowerCase().trim()
+
+    if (previousTerms.includes(sanitized) || previousTerms.length === 8) return
+
+    setPreviousTerms([sanitized, ...previousTerms])
   }
 
   return (
