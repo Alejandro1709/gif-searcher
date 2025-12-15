@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const useCounter = (initialCount: number) => {
+const useCounter = (initialCount: number = 5) => {
   const [counter, setCounter] = useState<number>(initialCount)
 
   const handleAdd = () => {
