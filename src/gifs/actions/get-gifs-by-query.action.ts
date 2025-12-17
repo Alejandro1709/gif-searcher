@@ -7,18 +7,23 @@ export const getGifsByQuery = async (query: string): Promise<Gif[]> => {
     return []
   }
 
-  const { data } = await giphyApi.get<GiphyResponse>(`/search`, {
-    params: {
-      q: query,
-      limit: 25,
-    },
-  })
+  try {
+    const { data } = await giphyApi.get<GiphyResponse>(`/search`, {
+      params: {
+        q: query,
+        limit: 25,
+      },
+    })
 
-  return data.data.map((gif) => ({
-    id: gif.id,
-    title: gif.title,
-    url: gif.images.original.url,
-    width: Number(gif.images.original.width),
-    height: Number(gif.images.original.height),
-  }))
+    return data.data.map((gif) => ({
+      id: gif.id,
+      title: gif.title,
+      url: gif.images.original.url,
+      width: Number(gif.images.original.width),
+      height: Number(gif.images.original.height),
+    }))
+  } catch (error) {
+    console.error(error)
+    return []
+  }
 }

@@ -5,10 +5,11 @@ import AxiosMockAdapter from 'axios-mock-adapter'
 import { giphyApi } from '../api/giphy.api'
 
 describe('getGifsByQuery', () => {
-  const mock = new AxiosMockAdapter(giphyApi)
+  let mock = new AxiosMockAdapter(giphyApi)
 
   beforeEach(() => {
-    mock.reset()
+    // mock.reset()
+    mock = new AxiosMockAdapter(giphyApi)
   })
 
   // test('Should return a list of gifs', async () => {
@@ -48,6 +49,18 @@ describe('getGifsByQuery', () => {
     mock.restore()
 
     const gifs = await getGifsByQuery('')
+
+    expect(gifs.length).toBe(0)
+  })
+
+  test('Should handle error when the API returns an error', async () => {
+    mock.onGet('/search').reply(400, {
+      data: {
+        message: 'Bad Request',
+      },
+    })
+
+    const gifs = await getGifsByQuery('sillicon valley')
 
     expect(gifs.length).toBe(0)
   })
