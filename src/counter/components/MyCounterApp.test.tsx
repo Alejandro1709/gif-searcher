@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, test } from 'vitest'
-import MyCounterApp from './MyCounterApp'
+import { MyCounterApp } from './MyCounterApp'
 
 describe('MyCounterApp', () => {
   test('Should render the component', () => {
