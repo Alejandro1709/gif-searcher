@@ -20,6 +20,8 @@ const useGifs = () => {
     const data = await getGifsByQuery(term)
 
     setGifs(data)
+
+    gifsCache.current[term] = gifs
   }
 
   const handleSearch = async (query: string) => {
